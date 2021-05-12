@@ -1,45 +1,64 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int a[50];
+vector<int> num;
+int len=0;
 
-void quicksort(int a[],int left,int right)
+void quicksortnum(int left,int right)
 {
-    int mid=a[(left+right)/2];
+    int mid=num[(left+right)/2];
     int i=left;
     int j=right;
     while(i<=j)
     {
-        while(a[i]<mid) i++;
-        while(a[j]>mid) j--;
+        while(num[i]<mid) i++;
+        while(num[j]>mid) j--;
         if(i<=j)
         {
-            swap(a[i],a[j]);
+            int temp=num[i];
+            num[i]=num[j];
+            num[j]=temp;
             i++;
             j--;
         }
     }
-    if(left<j) quicksort(a,left,j);
-    if(i<right) quicksort(a,i,right);
+    if(left<j) quicksortnum(left,j);
+    if(i<right) quicksortnum(i,right);
+}
+
+
+void shufflenum(int length)
+{
+    srand((unsigned)time(NULL));
+    int i=length;
+    while(i)
+    {
+        int pos=rand()%i;
+        swap(num[pos],num[i-1]);
+        i--;
+    }
 }
 
 int main()
 {
-    for(int i=0;i<50;i++)
+    cin>>len;
+    num.resize(len);
+    for(int i=0;i<len;i++)
     {
-        a[i]=50-i;
+        num[i]=i;
     }
+    shufflenum(len);
     cout<<"init:";
-    for(int i=0;i<50;i++)
+    for(int i=0;i<len;i++)
     {
-        cout<<a[i]<<" ";
+        cout<<num[i]<<" ";
     }
     cout<<endl;
-    quicksort(a,0,49);
+    quicksortnum(0,len-1);
     cout<<"aftersort:";
-    for(int i=0;i<50;i++)
+    for(int i=0;i<len;i++)
     {
-        cout<<a[i]<<" ";
+        cout<<num[i]<<" ";
     }
     cout<<endl;
     return 0;
