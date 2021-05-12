@@ -1,2 +1,2 @@
 # hello-world
-just test how to use github
+a easy quicksort cpp
