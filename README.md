@@ -1,2 +1,2 @@
 # hello-world
-just test
+just test how to use github
